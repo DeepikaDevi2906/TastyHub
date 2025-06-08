@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Recipe App{% endblock %}
+
+{% block content %}
+  <div class="d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="card shadow-lg p-5" style="max-width: 600px; width: 100%; background: #f9fefb;">
+      <h1 class="mb-4 text-success text-center">Welcome to My Recipe App 🍽️</h1>
+      <p class="lead text-center mb-4 text-secondary">
+        Discover, create, and share your favorite recipes with ease!
+      </p>
+
+      {% if current_user.is_authenticated %}
+        <p class="text-center text-success mb-4">Logged in as <strong>{{ current_user.username }}</strong></p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <a href="{{ url_for('recipes_page') }}" class="btn btn-success btn-lg px-4 shadow-sm">
+            View Recipes
+          </a>
+          <a href="{{ url_for('add_recipe_page') }}" class="btn btn-outline-success btn-lg px-4 shadow-sm">
+            Add New Recipe
+          </a>
+        </div>
+      {% else %}
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <a href="{{ url_for('login_page') }}" class="btn btn-success btn-lg px-4 shadow-sm">
+            Login
+          </a>
+          <a href="{{ url_for('register_page') }}" class="btn btn-outline-success btn-lg px-4 shadow-sm">
+            Register
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
